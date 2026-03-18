@@ -2,89 +2,95 @@
 
 ## Description
 
-Ce projet consiste à développer une application bancaire en **Java** connectée à une base de données **Oracle** via **JDBC**.
+Ce projet est une application bancaire développée en **Java**, connectée à une base de données **Oracle** via **JDBC**.
 
-L’application permet de gérer :
+Elle permet de gérer :
 - les clients  
 - les comptes bancaires  
 - les transactions  
 - les notifications  
-- les gestionnaires de clients  
+- les gestionnaires  
 
-L’architecture repose sur le modèle **DAO/DTO**, garantissant une séparation claire entre :
+L’architecture est basée sur le modèle **DAO/DTO**, garantissant une bonne séparation entre :
 - la logique métier  
 - l’accès aux données  
 - les objets de transfert  
 
 ---
 
-## Objectifs du Projet
+## Objectifs
 
-- Gérer plusieurs types de comptes :
+- Gérer différents types de comptes :
   - Compte courant  
   - Compte épargne  
   - Compte crédit  
   - Compte en devise  
 
-- Effectuer les opérations bancaires :
-  - Dépôts  
-  - Retraits  
-  - Transferts  
+- Réaliser les opérations bancaires :
+  - Dépôt  
+  - Retrait  
+  - Transfert  
 
-- Assurer le suivi des transactions et des notifications  
+- Assurer le suivi des transactions et notifications  
 
-- Implémenter une architecture modulaire et maintenable  
+- Concevoir une architecture modulaire et maintenable  
 
-- Communiquer avec une base de données **Oracle via JDBC**
+- Se connecter à Oracle via JDBC  
 
 ---
 
-## Architecture Globale
+## Architecture du Projet
 
-### Organisation des Packages
+### Packages
 
 | Package | Rôle |
 |--------|------|
-| `bus` | Logique métier (services, règles de gestion, opérations bancaires) |
-| `data` | Accès aux données via JDBC (DAO) |
-| `DTO` | Objets de transfert entre les couches |
-
-> Les diagrammes UML (classes et architecture) sont disponibles dans le dépôt.
+| `bus` | Logique métier |
+| `data` | Accès aux données (DAO) |
+| `DTO` | Objets de transfert |
+| `interfaces` | Interfaces des services |
+| `ui` | Interface utilisateur |
 
 ---
 
-## Base de Données Oracle
+## Base de Données
 
 | Table | Description |
 |-------|-------------|
-| `Client` | Informations sur les clients |
-| `BankManager` | Gestionnaires associés aux clients |
-| `BankAccount` | Classe parent des comptes |
+| `Client` | Informations clients |
+| `BankManager` | Gestionnaires |
+| `BankAccount` | Compte parent |
 | `CheckingAccount` | Compte courant |
 | `SavingsAccount` | Compte épargne |
-| `CreditAccount` | Compte de crédit |
-| `CurrencyAccount` | Compte en devise |
-| `Transaction` | Historique des opérations |
-| `Notification` | Messages envoyés aux clients |
+| `CreditAccount` | Compte crédit |
+| `CurrencyAccount` | Compte devise |
+| `Transaction` | Historique |
+| `Notification` | Notifications |
+
+📄 Le script SQL est disponible dans le fichier `Account.sql`.
 
 ---
 
-## Fonctionnalités Clés
+## Diagrammes UML
 
-| Fonction | Description |
-|----------|-------------|
-| Création de comptes | Selon le type (courant, épargne, crédit, devise) |
-| Gestion des clients | Ajout, modification, recherche |
-| Transactions | Dépôts, retraits, transferts |
-| Notifications | Générées automatiquement |
-| Historique | Suivi via `TransactionDAO` |
-| Intérêts | Application automatique pour les comptes épargne |
+Les diagrammes UML du projet sont disponibles dans le dossier `Diagramme` :
+- Diagramme de classes  
+- Diagramme d’architecture  
 
 ---
 
-## Exemple de Code
+## Fonctionnalités
 
-### Classe `Main`
+- Création de comptes bancaires  
+- Gestion des clients (ajout, modification, recherche)  
+- Dépôts, retraits et transferts  
+- Historique des transactions  
+- Génération automatique de notifications  
+- Calcul des intérêts pour les comptes épargne  
+
+---
+
+## Exemple d’Utilisation
 
 ```java
 ClientDAO clientDAO = new ClientDAO();
